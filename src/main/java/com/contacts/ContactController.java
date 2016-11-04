@@ -1,7 +1,12 @@
 package com.contacts;
 
+
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,16 +23,29 @@ public class ContactController {
 		this.contactRepo = contactRepo;
 	}
 
-	@RequestMapping(method=RequestMethod.GET)
-	public String home(Map<String,Object> model) {
+	@RequestMapping(value = "/contact", method = RequestMethod.GET)
+	public void home(Map<String,Object> model, HttpServletResponse response) {
 		List<Contact> contacts = contactRepo.findAll();
 		model.put("contacts", contacts);
-		return "home";
+		try {
+			response.sendRedirect("http://contacts123.cfapps.io/contact");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//return "http://contacts123.cfapps.io/";
 	}
 
-	@RequestMapping(method=RequestMethod.POST)
-	public String submit(Contact contact) {
+	@RequestMapping(value = "contact", method = RequestMethod.POST)
+	public void submit(Contact contact, HttpServletResponse response) {
 		contactRepo.save(contact);
-		return "redirect:/";
+		//return "redirect:/";
+		try {
+			response.sendRedirect("http://contacts123.cfapps.io/contact");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

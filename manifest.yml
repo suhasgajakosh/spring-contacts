@@ -1,0 +1,5 @@
+applications:
+- name: contacts123
+  memory: 512M
+  host: contacts123
+  path: target\contacts-1.4.1.RELEASE.war

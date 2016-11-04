@@ -58,10 +58,10 @@
 			<artifactId>thymeleaf-spring4</artifactId>
 		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-		</dependency>
+		</dependency> -->
 	</dependencies>
 
 	<build>
